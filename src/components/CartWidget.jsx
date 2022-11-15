@@ -1,9 +1,9 @@
 import React from 'react'
-import { FaHome } from "react-icons/fa";
+import { FaShoppingCart } from "react-icons/fa";
 
 function CartWidget() {
   return (
-    <FaHome />
+    <FaShoppingCart size="30px"/>
   )
 }
 
