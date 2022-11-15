@@ -1,4 +1,5 @@
 /* Back End */
+import Item from "../components/Item";
 import products from "../data/data";
 function getItems () {
 
@@ -15,16 +16,17 @@ function getItems () {
 
 
     });
-}
+}  
 
-export function getSingleItem () {
+export function getSingleItem (idParam) {
 
     let error = false;
 
     return new Promise ((resolve, reject) => {
+        let itemRequested = products.find ( ( Item) => Item.id === parseInt (idParam) )
         setTimeout (()=> {
             if (error !== true)
-            resolve(products);
+            resolve(itemRequested);
             else {
                 reject ("Error en la API");
             }

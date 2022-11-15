@@ -4,7 +4,7 @@ import {Link} from "react-router-dom"
 
 function Item({title, imgurl, price, id}) {
 
-  const urlDetail = `/datail/${id}`
+  const urlDetail = `/detail/${id}`
 
   return (
 
@@ -17,7 +17,7 @@ function Item({title, imgurl, price, id}) {
         </div>
 
         <h3>
-
+            
             {title}
 
         </h3>
@@ -28,11 +28,11 @@ function Item({title, imgurl, price, id}) {
 
         </p>
 
-        <link to = {urlDetail}>
+        <Link to = {urlDetail}>
 
           <button>Ver más</button>
 
-        </link>
+        </Link>
 
     </div>
 
