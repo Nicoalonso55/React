@@ -1,39 +1,43 @@
 /* Back End */
 import Item from "../components/Item";
 import products from "../data/data";
-function getItems () {
+function getItems(id) {
+  let error = false;
 
-    let error = false;
-
-    return new Promise ((resolve, reject) => {
-        setTimeout (()=> {
-            if (error !== true)
-            resolve(products);
+  return new Promise((resolve, reject) => {
+    if (id === undefined) {
+      setTimeout(() => {
+        if (error !== true) resolve(products);
+        else {
+          reject("Error en la API");
+        }
+      }, 2000);
+    } else {
+        let itemFilter = products.filter((item) => item.category ===id);
+        setTimeout(() => {
+            
+            console.log(id);
+            if (error !== true) resolve(itemFilter);
             else {
-                reject ("Error en la API");
+              reject("Error en la API");
             }
-        },2000);
+          }, 2000);
+    }
+  });
+}
 
+export function getSingleItem(idParam) {
+  let error = false;
 
-    });
-}  
-
-export function getSingleItem (idParam) {
-
-    let error = false;
-
-    return new Promise ((resolve, reject) => {
-        let itemRequested = products.find ( ( Item) => Item.id === parseInt (idParam) )
-        setTimeout (()=> {
-            if (error !== true)
-            resolve(itemRequested);
-            else {
-                reject ("Error en la API");
-            }
-        },2000);
-
-
-    });
+  return new Promise((resolve, reject) => {
+    let itemRequested = products.find((Item) => Item.id === parseInt(idParam));
+    setTimeout(() => {
+      if (error !== true) resolve(itemRequested);
+      else {
+        reject("Error en la API");
+      }
+    }, 2000);
+  });
 }
 
 /* Front End 

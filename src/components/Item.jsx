@@ -1,43 +1,25 @@
-import React from 'react'
-import products from '../data/data'
-import {Link} from "react-router-dom"
+import React from "react";
+import products from "../data/data";
+import { Link } from "react-router-dom";
 
-function Item({title, imgurl, price, id}) {
-
-  const urlDetail = `/detail/${id}`
+function Item({ title, imgurl, price, id }) {
+  const urlDetail = `/detail/${id}`;
 
   return (
+    <div className="products">
+      <div className="card-img">
+        <img src={imgurl} alt={title} />
+      </div>
 
-    <div className='products'>
+      <h3>{title}</h3>
 
-        <div className='card-img'>
+      <p>{price}</p>
 
-          <img src={imgurl} alt={title} />
-
-        </div>
-
-        <h3>
-            
-            {title}
-
-        </h3>
-
-        <p>
-
-            {price}
-
-        </p>
-
-        <Link to = {urlDetail}>
-
-          <button>Ver más</button>
-
-        </Link>
-
+      <Link to={urlDetail}>
+        <button>Ver más</button>
+      </Link>
     </div>
-
-  )
-
+  );
 }
 
-export default Item
+export default Item;
