@@ -1,7 +1,10 @@
 import CartWidget from "./CartWidget";
 import { Link } from "react-router-dom";
+import { cartContext } from "./CartContext";
+import { useContext } from "react";
 
 function NavBar() {
+  const miContext = useContext(cartContext);
   return (
     <header>
       <nav className="menu">
@@ -15,12 +18,11 @@ function NavBar() {
           <li>
             <Link to="/category/smartphones">Smartphones</Link>
           </li>
-          
         </ul>
       </nav>
       <div className="cart">
         <CartWidget />
-        <span>0</span>
+        <span>{miContext.itemsInCart()}</span>
       </div>
     </header>
   );
