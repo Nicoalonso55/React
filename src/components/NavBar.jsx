@@ -21,8 +21,9 @@ function NavBar() {
         </ul>
       </nav>
       <div className="cart">
+        <Link to="/cart">
         <CartWidget />
-        <span>{miContext.itemsInCart()}</span>
+        <span>{miContext.itemsInCart()}</span></Link>
       </div>
     </header>
   );

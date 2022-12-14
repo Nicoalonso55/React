@@ -26,8 +26,20 @@ export function CartContextProvider({ children }) {
     return total;
   }
 
+  function removeItem(itemId){
+    const newCart = cart.filter((item)=> item.id !==itemId);
+    setCart(newCart);
+
+
+  }
+
+  function removeCart(){
+    const newCart = [];
+    setCart(newCart);
+  }
+
   return (
-    <cartContext.Provider value={{ cart, addToCart, itemsInCart }}>
+    <cartContext.Provider value={{ cart, addToCart, itemsInCart, removeItem, removeCart }}>
       {children}
     </cartContext.Provider>
   );
