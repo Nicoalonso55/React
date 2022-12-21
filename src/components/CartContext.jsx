@@ -38,8 +38,14 @@ export function CartContextProvider({ children }) {
     setCart(newCart);
   }
 
+  function priceInCart(){
+    let total= 0;
+    cart.forEach((producto) => (total= total + (producto.price*producto.count)))
+    return total;
+  }
+
   return (
-    <cartContext.Provider value={{ cart, addToCart, itemsInCart, removeItem, removeCart }}>
+    <cartContext.Provider value={{ cart, addToCart, itemsInCart, removeItem, removeCart, priceInCart }}>
       {children}
     </cartContext.Provider>
   );

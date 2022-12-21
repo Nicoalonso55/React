@@ -1,20 +1,29 @@
 import React from "react";
 import Item from "./Item";
-import getItems from "../MockService/mockService";
+import getItems, {itemCategory} from "../firestore/firestor";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Loader from "./Loader";
+import { async } from "@firebase/util";
 
 function ItemListContainer() {
   /*const loader = <h3>Cargando...</h3>*/
   const [products, setProducts] = useState(null);
-  console.log(useParams());
   const { id } = useParams();
-  useEffect(() => {
-    getItems(id).then((respuestaDatos) => {
-      setProducts(respuestaDatos);
-    });
-  }, [id]);
+  async function getItemsAsync() {
+    if (!id) {
+      let respuesta = await getItems();
+      setProducts(respuesta);
+    } else {
+      let respuesta = await itemCategory(id);
+      setProducts(respuesta);
+    }
+  }
+
+  useEffect (() =>{
+    getItemsAsync();
+  },[id])
+  
 
   return <> {products ? <div className="catalogo">
       
